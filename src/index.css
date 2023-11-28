@@ -7,12 +7,11 @@
 }
 
 .pink-glassmorphism {
-  background: rgba( 229, 20, 163, 0.4 );
-  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-  backdrop-filter: blur( 6.5px );
-  -webkit-backdrop-filter: blur( 6.5px );
-  border-radius: 10px;
-  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  background: rgba(230, 3, 82, 0.55) ;
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 14.5px );
+-webkit-backdrop-filter: blur( 14.5px );
+border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 .tinder-font{
@@ -39,7 +38,7 @@
     font-weight: bold;
     letter-spacing: 5px;
     text-transform: uppercase;
-    color: #b91184;
+    color: #E91E63;
     transition: all 1000ms;
     font-size: 18px;
     font-weight: bold;
@@ -52,7 +51,7 @@
     color: #ffffff;
     transform: scale(1.03);
     outline: none;
-    box-shadow: 4px 5px 17px -4px #e514a3;
+    box-shadow: 4px 5px 17px -4px #E91E63;
   }
   
   .signup-btn::before {
@@ -62,7 +61,7 @@
     top: 0;
     width: 0;
     height: 100%;
-    background-color: #e514a3;
+    background-color: #E91E63;
     opacity: 0.7;
     transform: skewX(45deg);
     z-index: -1;
@@ -72,4 +71,7 @@
   .signup-btn:hover::before {
     width: 250%;
   }
-  
+
+.login-btn-bg{
+  background: linear-gradient(to right, #fc8181, #f687b3);
+}
