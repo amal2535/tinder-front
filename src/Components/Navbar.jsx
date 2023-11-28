@@ -33,7 +33,7 @@ const Navbar = () => {
                     </span>
                     Language
                 </h1>
-                <button className="bg-white text-black rounded-2xl px-7 py-1 font-semibold transition delay-75 text-lg hover:bg-gray-200 dark:bg-gray-900 border border-gray-400 dark:text-white dark:hover:bg-gray-800"> 
+                <button className="bg-white text-black rounded-2xl px-7 py-1 font-semibold transition delay-75 text-lg hover:bg-gray-200 dark:bg-gray-900 border border-gray-400 dark:text-white dark:hover:bg-gray-800 dark:border-gray-600"> 
                     Log in
                 </button>
             </div>

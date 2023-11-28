@@ -3,7 +3,7 @@ import TinderLogo from "../Images/Tinder-logo-dark.png"
 
 const SideBarLanding = ({ SetSideOpen, items, SideBarOpen }) => {
     return(
-        <div className={`lg:hidden flex flex-col z-50 fixed bg-white h-screen  justify-between -right-1 ${SideBarOpen ? 'translate-x-0 w-screen' : 'translate-x-full w-screen'} ease-in-out duration-300 dark:text-white dark:bg-black -top-[1px]`} >
+        <div className={`lg:hidden flex flex-col z-50 fixed bg-white h-screen  justify-between  ${SideBarOpen ? 'translate-x-0 w-screen' : 'translate-x-full w-screen'} ease-in-out duration-300 dark:text-white dark:bg-black -top-[1px]`} >
             <div>
                 <div className="flex justify-between">
                     <div className="flex gap-[1px] translate-y-5 ">
@@ -18,7 +18,9 @@ const SideBarLanding = ({ SetSideOpen, items, SideBarOpen }) => {
                     {items.map((item, key)=>(
                         <div key={key} className="w-11/12 bg-gray-200 rounded-lg px-2 py-2 flex flex-row justify-between cursor-pointer transition delay-75 hover:bg-slate-300 active:bg-slate-200 dark:bg-zinc-800 dark:hover:bg-zinc-900 dark:active:bg-zinc-700">
                             <p className="text-xl font-semibold"> {item} </p>
-                            <svg className="mr-5 transition delay-100 ease-in-out hover:translate-x-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg>
+                            <div className="mr-4 w-full flex justify-end transition delay-75 hover:translate-x-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg>
+                            </div>
                         </div>
                     ))}
                 </div>
