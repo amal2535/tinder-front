@@ -3,10 +3,11 @@ import Navbar from "../Navbar"
 import Footer from "../Footer"
 
 const Faq = () => {
+    
     return (
         <div className="overflow-hidden">
             <Navbar />
-            <div className="bg-white w-screen min-h-screen flex flex-col darmd:text-4xl text-2xly-900 dark:text-white pt-32 px-7 gap-3 justify-center">
+            <div className="bg-white w-screen min-h-screen flex flex-col darmd:text-4xl text-2xl dark:bg-gray-900 dark:text-white pt-32 px-7 gap-3 justify-center">
                 <h1 className="text-5xl self-center font-bold mb-7">Frequently Asked Questions (FAQ)</h1>
                 <div className="flex flex-col gap-4 px-7 py-4 bg-gray-200 rounded-lg border-2 border-gray-400 dark:border-gray-500 dark:bg-zinc-700 ">
                     <h1 className="md:text-4xl text-2xl font-bold">General Questions</h1>

@@ -17,7 +17,7 @@ const Testim = () => {
                         </figure>
                         <figure class="flex flex-col justify-center items-center p-8 text-center bg-gray-50 border-b border-gray-200 md:p-12 dark:bg-gray-800 dark:border-gray-700 lg:rounded-tr-xl lg:rounded-b-none rounded-b-xl">
                             <blockquote class="mx-auto mb-8 max-w-2xl text-gray-500 dark:text-gray-400">
-                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">SMia and Liam</h3>
+                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Soumaya and Liam</h3>
                                 <p class="mt-4">"Our love story kicked off with a quick swipe. In a world of profiles, we found each other. Messages turned into calls, calls into dates, and here we are. Looking back, we're grateful for the app that set us up for a happy life together."</p>
                             </blockquote>
                         </figure>

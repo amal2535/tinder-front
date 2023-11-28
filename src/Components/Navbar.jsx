@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import Logo from "./Images/logo.png"
 import SideBarLanding from "./ui/SideBarLanding"
+import { NavLink } from "react-router-dom"
+import Login from "./ui/Login"
 
 const items = [
     "About",
@@ -12,13 +14,14 @@ const items = [
 
 const Navbar = () => {
     const [sideBarOpen, setSideBarOpen] = useState(false)
+    const [open, setOpen] = useState(false)
     return(
         <div className="fixed top-0 mb-8 w-full z-40 border-b pink-glassmorphism flex justify-around">
             <div className="flex">
-                <img src={Logo} alt="" width={180} className="object-cover object-center w-32 translate-y-[2px]" />
+                <NavLink to="/"> <img src={Logo} alt="" width={180} className="object-cover object-center w-32 translate-y-[2px]" /> </NavLink>
                 <div className=" hidden lg:flex flex-row items-center justify-between px-3 gap-10 ">
             { items.map((item, key)=>(
-                      <h1 className="text-white font-semibold text-xl -translate-y-1 hover:cursor-pointer transition delay-150 hover:text-purple-900 hover:scale-[1.05]" key={key}> {item} </h1>
+                      <h1 className="text-white font-semibold text-xl -translate-y-1 hover:cursor-pointer transition delay-150 hover:text-purple-900 hover:scale-[1.05]" key={key}> <NavLink to={`/${item.toLowerCase()}`}> {item} </NavLink> </h1>
                 )
                   ) }
             </div>
@@ -33,7 +36,7 @@ const Navbar = () => {
                     </span>
                     Language
                 </h1>
-                <button className="bg-white text-black rounded-2xl px-7 py-1 font-semibold transition delay-75 text-lg hover:bg-gray-200 dark:bg-gray-900 border border-gray-400 dark:text-white dark:hover:bg-gray-800 dark:border-gray-600"> 
+                <button className="bg-white text-black rounded-2xl px-7 py-1 font-semibold transition delay-75 text-lg hover:bg-gray-200 dark:bg-gray-900 border border-gray-400 dark:text-white dark:hover:bg-gray-800 dark:border-gray-600" onClick={()=>setOpen(true)}> 
                     Log in
                 </button>
             </div>
@@ -43,6 +46,7 @@ const Navbar = () => {
                 </svg>
             </div>
                 <SideBarLanding SetSideOpen={setSideBarOpen} items={items} SideBarOpen={sideBarOpen} />
+                <Login open={open} setOpen={setOpen} />
         </div>
     )
 }
