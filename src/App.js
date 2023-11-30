@@ -2,6 +2,9 @@ import { useState, useEffect } from "react"
 import Landing from "./Components/Landing"
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { About,Contact, Faq, Policy, Security  } from "./Components/Pages";
+import MainTinder from "./Components/Pages/Main/Main"
+import Profile from "./Components/Pages/Profile";
+import { CookieProvider } from "./Context/CookieContext";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +30,14 @@ const router = createBrowserRouter([
   {
     path: "/Security",
     element: <Security />
+  },
+  {
+    path: "/MainTinder",
+    element: <MainTinder />
+  },
+  {
+    path: "profile",
+    element: <Profile />
   }
 ])
 
@@ -57,7 +68,9 @@ function App() {
 
   return (
     <div className="">
-      <RouterProvider router={router} />
+      <CookieProvider>
+        <RouterProvider router={router} />
+      </CookieProvider>
     </div>
   )
 }
