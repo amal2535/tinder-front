@@ -1,16 +1,16 @@
 import React,{ useEffect, useContext } from "react"
 import { useTranslation } from "react-i18next"
-import { CookieContext } from "../../Context/CookieContext"
 import classNames from 'classnames'
 import i18next from 'i18next'
 import { FaGlobe } from "react-icons/fa6";
 import US from 'country-flag-icons/react/3x2/US'
 import FR from 'country-flag-icons/react/3x2/FR'
 import SA from 'country-flag-icons/react/3x2/SA'
-
+import {CookieContext} from "../../Context/CookieContext"
 
 function Language() {
-  const { cookies } = useContext(CookieContext)
+  const {cookies} = useContext(CookieContext)
+
   const languages = [
     {
       code: 'fr',
@@ -68,24 +68,24 @@ function Language() {
   };
     return (
       
-     <div className="container translate-y-[3.5px] ml-1 z-50">
+     <div className="container mx-auto p-4 -ml-3 translate-y-[3.5px]">
       <div className="flex  items-center">
         <div className="relative group">
           <button
-            className="cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 z-50"
+            className="focus:outline-none"
             onClick={() => {
               document.getElementById('languageDropdown').classList.toggle('hidden');
             }}
           >
-            <FaGlobe size={"25px"} color="#660099" />
+            <FaGlobe size={"26"} color="#660099" />
 
           </button>
           <ul
             id="languageDropdown"
-            className=" hidden absolute -right-28 -mt-8 space-y-2 bg-white border border-gray-300 rounded-md shadow-md z-50 w-24"
+            className=" hidden absolute right-0 mt-2 space-y-2 bg-white border border-gray-300 rounded-md shadow-md translate-x-32 -translate-y-4 w-28"
           >
             <li>
-              <span className="block px-4 py-2 text-gray-700 z-50">{t('language')}</span>
+              <span className="block px-4 py-2 text-gray-700">{t('language')}</span>
             </li>
             {languages.map(({ code, name, country_code }) => (
               <li key={country_code} >

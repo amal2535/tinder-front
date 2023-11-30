@@ -104,3 +104,43 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
   -webkit-backdrop-filter: blur( 13px );
   border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
+
+.redml {
+  background-color: brown;
+}
+
+
+.violet-sidebar{
+  background-color: #E91E63;
+}
+
+.shadow1{
+  box-shadow: rgba(230, 16, 151, 0.4) 5px 5px, rgba(128, 9, 84, 0.3) 10px 10px, rgba(59, 6, 40, 0.2) 15px 15px, rgba(74, 10, 50, 0.1) 20px 20px, rgba(0, 0, 0, 0.05) 25px 25px;
+}
+.paragrapheLimite {
+  width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.slider {
+  height: 10px;
+  width: 100%;
+  background-color: #ddd;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.slider .thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: #007bff;
+  cursor: grab;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.slider .thumb.active {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}

@@ -3,6 +3,7 @@ import { isAuthenticated } from "../../API/AuthApi"
 import { CookieContext } from "../../../Context/CookieContext"
 import { useNavigate } from "react-router-dom"
 import FileBase from "react-file-base64"
+import SideBar from "../../SideBar/SideBar"
 
 export default function MainTinder(){
     const { cookies, setCookie } = useContext(CookieContext)
@@ -29,15 +30,7 @@ export default function MainTinder(){
       };
     return(
         <div>
-            <FileBase
-        type="file"
-        multiple={false}
-        onDone={({ base64 }) =>
-          setData({ ...data, image: base64 })
-        }
-      />
-      <button onClick={handleSubmit}> clickkk </button>
-      <img src={image} alt="tessssssst" />
+            <SideBar />
         </div>
     )
 }
