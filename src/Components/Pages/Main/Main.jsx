@@ -15,6 +15,7 @@ export default function MainTinder(){
             if(res?.status !== 200){
                 navigate("/")
                 setCookie('TinderJWT', '', 0)
+                setCookie('TinderEmail', '', 0)
             }
         }
         CheckUser()

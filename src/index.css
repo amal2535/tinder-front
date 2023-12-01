@@ -144,3 +144,34 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 .slider .thumb.active {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background-color: rgb(198, 73, 198);
+  width: 30px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding-top: 12px;
+  margin: 0px;
+  margin-top: 10px;
+}
+
+.custom-inpt {
+  padding: 10px !important;
+}
+
+.btn-dark{
+  background: rgba( 255, 255, 255, 0.3 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 7.5px );
+  -webkit-backdrop-filter: blur( 7.5px );
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.btn-light{
+  background: rgba( 0, 0, 0, 0.35 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 9px );
+  -webkit-backdrop-filter: blur( 9px );
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+}

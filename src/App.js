@@ -48,9 +48,9 @@ function App() {
   
   useEffect(()=>{
     if(window.matchMedia('(prefers-color-scheme: dark)').matches){
-      setTheme('light')
-    }else{
       setTheme('dark')
+    }else{
+      setTheme('light')
     }
   }, [])
 
@@ -58,7 +58,7 @@ function App() {
     if(theme === "dark"){
       document.documentElement.classList.add("dark")
     }else{
-      document.documentElement.classList.remove("dark")
+      document.documentElement.classList.remove("light")
     }
   }, [theme])
 

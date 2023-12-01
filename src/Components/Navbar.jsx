@@ -1,8 +1,10 @@
-import React, { useState } from "react"
+import React, { useState, useContext, useEffect } from "react"
 import Logo from "./Images/logo.png"
 import SideBarLanding from "./ui/SideBarLanding"
 import { NavLink } from "react-router-dom"
 import Login from "./ui/Login"
+import { CookieContext } from "../Context/CookieContext"
+import { CheckProfile } from "./API/ProfileAPI"
 
 const items = [
     "About",
@@ -13,6 +15,20 @@ const items = [
 ]
 
 const Navbar = () => {
+    const { cookies } = useContext(CookieContext)
+    const email = cookies['TinderEmail']
+    const [username, setUsername] = useState()
+    useEffect(()=>{
+        const CheckingProfile = async ({email}) => {
+            const res = await CheckProfile({email})
+            if(res){
+                setUsername(res.data.Profile.firstname)
+            }
+        }
+        CheckingProfile({email})
+        console.log("fel navbar")
+    }, [])
+
     const [sideBarOpen, setSideBarOpen] = useState(false)
     const [open, setOpen] = useState(false)
     return(
@@ -36,17 +52,25 @@ const Navbar = () => {
                     </span>
                     Language
                 </h1>
-                <button className="bg-white text-black rounded-2xl px-7 py-1 font-semibold transition delay-75 text-lg hover:bg-gray-200 dark:bg-gray-900 border border-gray-400 dark:text-white dark:hover:bg-gray-800 dark:border-gray-600" onClick={()=>setOpen(true)}> 
-                    Log in
-                </button>
+                {!username?
+                    <button className="bg-white text-black rounded-2xl px-7 py-1 font-semibold transition delay-75 text-lg hover:bg-gray-200 dark:bg-gray-900 border border-gray-400 dark:text-white dark:hover:bg-gray-800 dark:border-gray-600" onClick={()=>setOpen(true)}> 
+                        Log in
+                    </button>
+                    :
+                    <NavLink to="/MainTinder">
+                        <div className="px-6 py-2 rounded-md  h-fit bg-gray-900 self-center lg:flex hidden cursor-pointer hover:bg-gray-800 transition delay-200 hover:scale-120"><p className="text-lg font-bold text-gray-300">{username}</p></div>
+                    </NavLink>
+                    
+                }
             </div>
             <div className="lg:hidden flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 -translate-y-1 transition delay-75 text-white cursor-pointer hover:text-purple-900" onClick={()=>setSideBarOpen(!sideBarOpen)}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 -translate-y-0 transition delay-75 text-white cursor-pointer hover:text-purple-900" onClick={()=>setSideBarOpen(!sideBarOpen)}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                 </svg>
             </div>
                 <SideBarLanding SetSideOpen={setSideBarOpen} items={items} SideBarOpen={sideBarOpen} />
                 <Login open={open} setOpen={setOpen} />
+                
         </div>
     )
 }

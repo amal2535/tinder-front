@@ -47,6 +47,7 @@ export default function Login({open, setOpen}) {
   React.useEffect(()=>{
     if(LoginResponse?.status === 200){
       setCookie('TinderJWT', LoginResponse.token, LoginResponse.Age)
+      setCookie('TinderEmail', LoginResponse.email, LoginResponse.Age)
       navigate("/MainTinder")
     }
   }, [LoginResponse])
