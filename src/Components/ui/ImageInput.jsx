@@ -1,15 +1,18 @@
 import React from "react";
+import FileBase from 'react-file-base64'
 
-const ImageInput = ({image}) => {
+const ImageInput = ({Images, AddImage, index}) => {
     return (
-        <div className={`${image ? 'border-dashed' : 'border-solid'} border-2 border-purple-700`}>
-            <div>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-            </svg>
-
-            </div>
-            <div></div>
+        <div className={`${ (Images && Images[index]) ? 'border-none' : 'border-dashed'} border-2 border-purple-700 w-52 h-64 rounded-3xl justify-center items-center`}>
+            { !(Images && Images[index]) ? 
+                <div className="mt-28 text-white" >
+                    <FileBase type="file" multiple={false} onDone={({ base64 })=>AddImage(base64)} />
+                </div>
+                :
+                <div className="flex w-inherit justify-center items-center">
+                    <img src={`${Images[index]}`} alt="" className="bg-red object-fit rounded-3xl self-center" />
+                </div>
+            }
         </div>
     )
 }
