@@ -1,6 +1,9 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import ProfileNav from "../ui/ProfileNav"
 import Footer from "../Footer";
+import ImageInput from "../ui/ImageInput";
+
+export default function Profile(){
 export default function(){
     const [gender, setGender] = useState('')
     const [showMe, setShowMe] = useState('')
@@ -11,14 +14,23 @@ export default function(){
         
     }
 
+    const [Images, setImages] = useState([])
+
+    const AddImage = (index) => {
+        setImages([...Images, index])
+    }
+
+    useEffect(()=>{
+        console.log(Images)
+    }, [Images])
+
     const maxLettersAbout = maxLength - about.length
 
     return (
         <div className="bg-gray-white overflow-x-hidden dark:bg-zinc-950">
-            <ProfileNav />
             <div className="flex flex-col w-full h-full items-center gap-4 mb-4">
-                <h1 className="mt-8 text-black dark:text-white text-4xl font-semibold cursor-none "> Create Account </h1>
-                <div className="w-full h-full flex lg:flex-row flex-col mt-7 gap-3 px-5 justify-center">
+                <h1 className="mt-4 text-black dark:text-white text-4xl font-semibold cursor-none "> Create Account </h1>
+                <div className="w-full h-full flex lg:flex-row flex-col mt-4 gap-3 px-5 justify-center">
                     <div className="py-12 px-24 md:gap-8 gap-5 items-center flex flex-col rounded-lg border border-pink-700">
                         <div className="flex md:gap-2 gap-5 md:flex-row flex-col ">
                             <div className=" flex flex-col gap-2">
@@ -58,12 +70,17 @@ export default function(){
                         </div>
                     </div>
 
-                    <div className="py-12 px-8 gap-8 items-center flex flex-col rounded-lg border border-gray-700">
-                        <div className="flex gap-2">
-                            <input type="text" className="border-2 rounded-lg border-white dark-border-black bg-gray-900 h-12 dark:text-white font-thin"/>
-                            <input type="text" className="border-2 rounded-lg border-white dark-border-black bg-gray-800 h-12 dark:text-white font-thin" />
+                    <div className="py-12 px-8 gap-24 items-center flex flex-col rounded-lg border border-pink-700">
+                        <div className="flex gap-3">
+                            <ImageInput Images={Images} AddImage={AddImage} index={0} />
+                            <ImageInput Images={Images} AddImage={AddImage} index={1} />
+                            <ImageInput Images={Images} AddImage={AddImage} index={2} />
                         </div>
-                        <input type="text" className="border-1 border-white dark-border-black" />
+                        <div className="flex gap-3">
+                            <ImageInput Images={Images} AddImage={AddImage} index={3} />
+                            <ImageInput Images={Images} AddImage={AddImage} index={4} />
+                            <ImageInput Images={Images} AddImage={AddImage} index={5} />
+                        </div> 
                     </div>
 
         <div className="w-screen h-screen bg-gray-white overflow-x-hidden dark:bg-zinc-950">
