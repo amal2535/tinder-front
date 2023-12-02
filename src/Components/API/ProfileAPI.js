@@ -12,3 +12,13 @@ export const CheckProfile = async ({email}) => {
         console.log(err)
     }
 }
+
+export const CreateProfile = async({ firstname, lastname, birthday, gender, showme, aboutme, images, email }) => {
+    let result 
+    try{
+        result = await axios.post(`${BASE_URL}/api/profile`, { firstname, lastname, birthday, gender, showme, aboutme, images, email })
+       return result
+    }catch(err){
+        return err.response
+    }
+}
