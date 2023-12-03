@@ -4,6 +4,7 @@ import { CookieContext } from "../../../Context/CookieContext"
 import { useNavigate } from "react-router-dom"
 import FileBase from "react-file-base64"
 import SideBar from "../../SideBar/SideBar"
+import Conversation from "../../SideBar/Conversation"
 
 export default function MainTinder(){
     const { cookies, setCookie } = useContext(CookieContext)
@@ -20,18 +21,10 @@ export default function MainTinder(){
         }
         CheckUser()
     }, [TinderToken])
-    const [data, setData] = useState({
-        image: "",
-      });
-      const [image, setImage] = useState("");
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        setImage(data.image)
-        console.log('data.image :>> ', data.image);
-      };
     return(
-        <div>
+        <div className="flex flex-row overflow-y-hidden">
             <SideBar />
+            <Conversation />
         </div>
     )
 }
