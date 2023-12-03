@@ -114,6 +114,14 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
   background-color: #E91E63;
 }
 
+.violet-sidebar1{
+  background: rgba( 207, 15, 82, 0.8 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 20px );
+  -webkit-backdrop-filter: blur( 20px );
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
 .shadow1{
   box-shadow: rgba(230, 16, 151, 0.4) 5px 5px, rgba(128, 9, 84, 0.3) 10px 10px, rgba(59, 6, 40, 0.2) 15px 15px, rgba(74, 10, 50, 0.1) 20px 20px, rgba(0, 0, 0, 0.05) 25px 25px;
 }

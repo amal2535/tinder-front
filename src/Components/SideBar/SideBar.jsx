@@ -8,7 +8,7 @@ import TinderIcon from "./TinderIcon";
 
     return (
       <div className="h-screen w-[25rem]">
-        <div className="h-20 violet-sidebar p-4 ">
+        <div className="h-20 violet-sidebar1 p-4 ">
         
         <TinderIcon/>
        
