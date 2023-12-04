@@ -7,7 +7,7 @@ import TinderIcon from "./TinderIcon";
   export default  function Sidebar() {
 
     return (
-      <div className="h-screen w-[25rem]">
+      <div className="h-screen w-[25rem] overflow-y-auto overflow-x-hidden">
         <div className="h-20 violet-sidebar1 p-4 ">
         
         <TinderIcon/>

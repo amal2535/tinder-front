@@ -9,32 +9,57 @@ import {
     TabPanel,
   } from "@material-tailwind/react";
   import ProfileCard from './ProfileCard';
+import { GetMyChats } from '../API/ChatApi';
 
 import { CookieContext } from "../../Context/CookieContext"
 import Messages from './Messages';
+import { CheckProfile } from '../API/ProfileAPI';
 
 const TabsSideBar = () => {
     const [MyMatches, setMyMatches] = useState([])
 
     const { cookies } = useContext(CookieContext)
     const email = cookies['TinderEmail']
+    const MembersArray = []
+    const [fetchedChats, setFetchedChats] = useState([])
+    const [UserDataToShow, setUserDataToShow ] = useState([])
     useEffect(()=>{
       const ReturnMatches = async ({email}) => {
         const res = await GetUserMatches({email})
+        const chats = await GetMyChats({email})
         if(res){
           setMyMatches(res.data.message)
+        }
+        if(chats){
+          setFetchedChats(chats.data.chats)
         }
       }
       ReturnMatches({email})
     }, [])
+
+    useEffect(()=>{
+      fetchedChats.map(async(chat)=>{
+        const member = chat.members[1]
+        const memberObject = await CheckProfile({email: member})
+        if(memberObject){
+          const memberdata = memberObject.data.Profile
+          setUserDataToShow(prevData => [...prevData, memberdata])
+        }
+      })
+    }, [fetchedChats, setFetchedChats])
     const [isMessage, setMessages] = useState('')
     const [isMatch, setMatches] = useState('')
     
     const [isRotated, setIsRotated] = useState('');
   
-    const setMessagesEnabled = () => {
+    const setMessagesEnabled = async (email) => {
       setMessages('underline')
       setMatches('')
+      const ArrayToShow = UserDataToShow.filter((user, index, array)=>{
+        const firstIndex = UserDataToShow.findIndex(u=>u.email === user.email)
+        return index === firstIndex
+      })
+      setUserDataToShow(ArrayToShow)
     }
     
     const setMatchesEnabled = () => {
@@ -96,7 +121,7 @@ const TabsSideBar = () => {
                  <TabPanel key={"msg"} value={"value1"}>
                     <div className="flex flex-col justify-center items-center">
 
-                      {4===2 ?
+                      {2 === 4 ?
                       <div>
                         <iframe src="https://lottie.host/embed/cb938baf-01e7-4649-ac44-062630fb66cb/Z8DkbPVGaF.json" className="w-96 h-64"></iframe>
                         <div className='cursor-default	mt-10 justify-content-center items-center text-center'>
@@ -109,8 +134,14 @@ const TabsSideBar = () => {
                         </div>
                       </div>
                       : 
-                      <div className="w-full h-full">
-                        <Messages />
+                      <div className="w-full h-full flex flex-col gap-2">
+                        {
+                          UserDataToShow.map((member) => {
+                              return (
+                                <Messages image={member.images[0]} name={`${member.firstname} ${member.lastname}`} key={member._id} />
+                              );
+                          })
+                        }
                       </div>
                       }
                     </div>
