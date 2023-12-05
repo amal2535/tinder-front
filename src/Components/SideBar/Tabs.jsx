@@ -1,4 +1,4 @@
-import React,{useState, useContext, useEffect} from 'react'
+import React,{useState, useEffect, useContext} from 'react'
 import { useTranslation } from 'react-i18next';
 import { GetUserMatches } from '../API/Likes';
 import {
@@ -17,10 +17,8 @@ import { CheckProfile } from '../API/ProfileAPI';
 
 const TabsSideBar = () => {
     const [MyMatches, setMyMatches] = useState([])
-
     const { cookies } = useContext(CookieContext)
     const email = cookies['TinderEmail']
-    const MembersArray = []
     const [fetchedChats, setFetchedChats] = useState([])
     const [UserDataToShow, setUserDataToShow ] = useState([])
     useEffect(()=>{
@@ -37,16 +35,17 @@ const TabsSideBar = () => {
       ReturnMatches({email})
     }, [])
 
-    useEffect(()=>{
-      fetchedChats.map(async(chat)=>{
-        const member = chat.members[1]
-        const memberObject = await CheckProfile({email: member})
-        if(memberObject){
-          const memberdata = memberObject.data.Profile
-          setUserDataToShow(prevData => [...prevData, memberdata])
-        }
-      })
-    }, [fetchedChats, setFetchedChats])
+    useEffect(() => {
+      fetchedChats.forEach(async (chat) => {
+          const member = chat.members.find((member) => member !== email);
+          const memberObject = await CheckProfile({ email: member });
+          if (memberObject) {
+              const memberdata = memberObject.data.Profile;
+              memberdata['ChatID'] = chat._id;
+              setUserDataToShow((prevData) => [...prevData, memberdata]);
+          }
+      });
+  }, [fetchedChats]);
     const [isMessage, setMessages] = useState('')
     const [isMatch, setMatches] = useState('')
     
@@ -55,7 +54,7 @@ const TabsSideBar = () => {
     const setMessagesEnabled = async (email) => {
       setMessages('underline')
       setMatches('')
-      const ArrayToShow = UserDataToShow.filter((user, index, array)=>{
+      const ArrayToShow = UserDataToShow.filter((user, index)=>{
         const firstIndex = UserDataToShow.findIndex(u=>u.email === user.email)
         return index === firstIndex
       })
@@ -138,7 +137,7 @@ const TabsSideBar = () => {
                         {
                           UserDataToShow.map((member) => {
                               return (
-                                <Messages image={member.images[0]} name={`${member.firstname} ${member.lastname}`} key={member._id} />
+                                <Messages member={member} />
                               );
                           })
                         }
