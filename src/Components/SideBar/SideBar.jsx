@@ -1,35 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import User from "./User";
 import Tabs from "./Tabs"
 import Profil from "./Profil/Profil";
 import TinderIcon from "./TinderIcon";
 
   export default  function Sidebar() {
-
+    const [tinderOpen, setTinderOpen] = useState(true)
+    const [userOpen, setUserOpen] = useState(false)
     return (
-      <div className="h-screen w-[25rem]">
+      <div className="h-screen min-w-[25rem] overflow-y-auto overflow-x-hidden">
         <div className="h-20 violet-sidebar1 p-4 ">
-        
-        <TinderIcon/>
-       
-          {/* 
-           <User/> */ } 
-
+          {
+            tinderOpen &&
+            <TinderIcon setUserOpen={setUserOpen} setTinderOpen={setTinderOpen} />
+          }
+          {
+            userOpen &&
+            <User setUserOpen={setUserOpen} setTinderOpen={setTinderOpen} /> 
+          }
         </div>
-       
-        {/*<div className='bg-black h-[290vh] '>
-           <Profil/> 
-          </div>+*/}
+        <div className='bg-black min-h-screen'>
        
         {
-
-            <div className="bg-[rgb(20,20,28)] h-screen -z-30 ">
-              <Tabs/> 
-            </div>
-    
+          tinderOpen && 
+            <Profil/> 
         }
-
-        
+        {
+          userOpen &&
+            <Tabs/> 
+        }
+      </div>
       </div>
     
 

@@ -1,46 +1,21 @@
-import React from "react";
+import React, {useContext, useEffect} from "react";
+import {ConversationContext} from "../../Context/ConversationContext" 
 
-const Messages = () => {
+const Messages = ({member}) => {
+    const { setOpen, setChatID, setChatMember, ChatID } = useContext(ConversationContext)
+    const chatID = member.ChatID
+    const image = member.images[0]
+    const name = `${member.firstname} ${member.lastname}`
     return(
-        <div className="flex flex-col w-full">
-            <div className="w-full h-24 flex items-center bg-zinc-800 hover:bg-zinc-700 hover:border-y hover:border-y-gray-400 hover:border-r-4 hover:border-r-red-700 px-2 gap-5 cursor-pointer">
+        <div className="flex flex-col w-full" onClick={()=>{setOpen(true); setChatID(chatID);setChatMember(member)}}>
+            <div className={`rounded-lg border border-slate-700 w-full h-24 flex items-center bg-zinc-800 hover:bg-zinc-700 hover:border-y hover:border-y-gray-400 hover:border-r-4 hover:border-r-red-700 px-2 gap-5 cursor-pointer text-gray-300 hover:text-pink-700 ${ChatID === chatID ? "border-r-2 border-r-red-800" : ""} `}>
                 <div>
-                    <img src="https://picsum.photos/200" alt="" width={70} height={70} className="rounded-full shadow-slate-500 shadow-md" />
+                    <img src={`${image}`} alt="" width={70} height={70} className="rounded-full w-16 h-16 shadow-slate-500 shadow-md" />
                 </div>
-                <div className="flex flex-col gap-3">
-                    <p className="text-gray-200 font-bold text-lg">Amal Maatoug</p>
-                    <p className="text-sm text-gray-300 ml-2">3ichti lkalba hedhi.</p>
-                </div>
-            </div>
-            <div className="w-full h-24 flex items-center bg-zinc-800 hover:bg-zinc-700 hover:border-y hover:border-y-gray-400 hover:border-r-4 hover:border-r-red-700 px-2 gap-5 cursor-pointer">
-                <div>
-                    <img src="https://picsum.photos/200" alt="" width={70} height={70} className="rounded-full shadow-slate-500 shadow-md" />
-                </div>
-                <div className="flex flex-col gap-3">
-                    <p className="text-gray-200 font-bold text-lg">Mouhib Naffeti</p>
-                    <p className="text-sm text-gray-300 ml-2">Wasa3 belk barka.</p>
-                </div>
-            </div>
-            <div className="w-full h-24 flex items-center bg-zinc-800 hover:bg-zinc-700 hover:border-y hover:border-y-gray-400 hover:border-r-4 hover:border-r-red-700 px-2 gap-5 cursor-pointer">
-                <div>
-                    <img src="https://picsum.photos/200" alt="" width={70} height={70} className="rounded-full shadow-slate-500 shadow-md" />
-                </div>
-                <div className="flex flex-col gap-3">
-                    <p className="text-gray-200 font-bold text-lg">Haroun Toumi</p>
-                    <p className="text-sm text-gray-300 ml-2">Wasa3 belk Amal.</p>
-                </div>
-            </div>
-            <div className="w-full h-24 flex items-center bg-zinc-800 hover:bg-zinc-700 hover:border-y hover:border-y-gray-400 hover:border-r-4 hover:border-r-red-700 px-2 gap-5 cursor-pointer">
-                <div>
-                    <img src="https://picsum.photos/200" alt="" width={70} height={70} className="rounded-full shadow-slate-500 shadow-md" />
-                </div>
-                <div className="flex flex-col gap-3">
-                    <p className="text-gray-200 font-bold text-lg">Hsan Naffeti</p>
-                    <p className="text-sm text-gray-300 ml-2">Rabi yberklk, Rabi yekrmk.</p>
-                </div>
+                <p className="font-bold text-lg truncate ">{name}</p>
             </div>
         </div>
     )
 }
 
-export default Messages
+export default Messages 

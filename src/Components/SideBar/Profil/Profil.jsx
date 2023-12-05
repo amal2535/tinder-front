@@ -12,7 +12,7 @@ import SupprimerCompte from './SupprimerCompte';
 
 const Profil = () => {
   return (
-    <div>
+    <div className="w-[25rem] min-h-screen bg-black">
       {/***************Réglages*******************/}
             <Reglages/>
       {/***************Reglages et découverte ************/}
@@ -29,7 +29,7 @@ const Profil = () => {
       {/***************Déconnexion*******************/}
             <Deconnexion/>
       {/************* Tinder version *******************/}
-            <List className="justify-content-center items-center "  style={{ transform: "translateY(530px)" }}>
+            <List className="justify-content-center items-center bg-black "  style={{ transform: "translateY(530px)" }}>
                   <FaFire className='w-8 h-8 ' style={{color:"#660099"}}/>
                   <span className='mt-3 text-white cursor-default'>Version 4.44.0</span>
             </List>
