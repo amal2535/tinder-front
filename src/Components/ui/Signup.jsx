@@ -35,7 +35,7 @@ export default function Signup({SignOpen, setSignOpen}) {
   const { setCookie } = React.useContext(CookieContext)
   const navigate = useNavigate()
 
-  const [SignupResponse, setSignupResponse] = React.useState({status: 0, message: '', token: '', Age: 0, email: ''})
+  const [SignupResponse, setSignupResponse] = React.useState({status: 0, message: '', token: '', Age: 0})
   const [SignupLoading, setSignupLoading] = React.useState(false)
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
@@ -51,8 +51,7 @@ export default function Signup({SignOpen, setSignOpen}) {
   React.useEffect(()=>{
     if(SignupResponse?.status === 201){
       setCookie('TinderJWT', SignupResponse.token, SignupResponse.Age)
-      setCookie('TinderEmail', SignupResponse.email, SignupResponse.Age)
-      navigate("/profile")
+      navigate("/MainTinder")
     }
   }, [SignupResponse])
 
