@@ -1,5 +1,6 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect, useContext} from 'react'
 import { useTranslation } from 'react-i18next';
+import { GetUserMatches } from '../API/Likes';
 import {
     Tabs,
     TabsHeader,
@@ -7,17 +8,58 @@ import {
     Tab,
     TabPanel,
   } from "@material-tailwind/react";
-  
+  import ProfileCard from './ProfileCard';
+import { GetMyChats } from '../API/ChatApi';
+
+import { CookieContext } from "../../Context/CookieContext"
+import Messages from './Messages';
+import { CheckProfile } from '../API/ProfileAPI';
 
 const TabsSideBar = () => {
+    const [MyMatches, setMyMatches] = useState([])
+    const { cookies } = useContext(CookieContext)
+    const email = cookies['TinderEmail']
+    const [fetchedChats, setFetchedChats] = useState([])
+    const [UserDataToShow, setUserDataToShow ] = useState([])
+    useEffect(()=>{
+      const ReturnMatches = async ({email}) => {
+        const res = await GetUserMatches({email})
+        const chats = await GetMyChats({email})
+        if(res){
+          setMyMatches(res.data.message)
+          console.log(res)
+        }
+        if(chats){
+          setFetchedChats(chats.data.chats)
+        }
+      }
+      ReturnMatches({email})
+    }, [])
+
+    useEffect(() => {
+      fetchedChats.forEach(async (chat) => {
+          const member = chat.members.find((member) => member !== email);
+          const memberObject = await CheckProfile({ email: member });
+          if (memberObject) {
+              const memberdata = memberObject.data.Profile;
+              memberdata['ChatID'] = chat._id;
+              setUserDataToShow((prevData) => [...prevData, memberdata]);
+          }
+      });
+  }, [fetchedChats]);
     const [isMessage, setMessages] = useState('')
     const [isMatch, setMatches] = useState('')
     
     const [isRotated, setIsRotated] = useState('');
   
-    const setMessagesEnabled = () => {
+    const setMessagesEnabled = async (email) => {
       setMessages('underline')
       setMatches('')
+      const ArrayToShow = UserDataToShow.filter((user, index)=>{
+        const firstIndex = UserDataToShow.findIndex(u=>u.email === user.email)
+        return index === firstIndex
+      })
+      setUserDataToShow(ArrayToShow)
     }
     
     const setMatchesEnabled = () => {
@@ -54,7 +96,7 @@ const TabsSideBar = () => {
             <TabsBody style={{zIndex: 0}}>
                 <TabPanel key={"match"} value={"value"}>
 
-                <div className="flex flex-col justify-center items-center mt-9" > 
+                {(MyMatches.length === 0) ? <div className="flex flex-col justify-center items-center mt-9" > 
                     <div className={`h-52 w-32  bg-gradient-to-tr from-red-400 to-pink-500 rounded-lg shadow1 ${isRotated} ? 'rotate-[30deg]' : '' `}>
                     </div>
                     <div className='cursor-default mt-10 justify-content-center items-center text-center'>
@@ -66,23 +108,43 @@ const TabsSideBar = () => {
                        </p>
                     </div>
                 </div>
+                : 
+                <div className="w-full h-full flex gap-2 flex-wrap mt-4 items-center justify-center">
+                  {MyMatches?.map((match)=>(
+                    <ProfileCard  imageUrl={match.images[0]} profileName={match.firstname}  />
+                    ))}
+                </div>
+                }
 
                    </TabPanel>
 
                  <TabPanel key={"msg"} value={"value1"}>
-                      <div className="flex flex-col justify-center items-center">
+                    <div className="flex flex-col justify-center items-center">
 
-                      <iframe src="https://lottie.host/embed/cb938baf-01e7-4649-ac44-062630fb66cb/Z8DkbPVGaF.json" className="w-96 h-64"></iframe>
-                      <div className='cursor-default	mt-10 justify-content-center items-center text-center'>
-                           <h1 className="text-white text-2xl font-bold ">
+                      {UserDataToShow.length === 0 ?
+                      <div>
+                        <iframe src="https://lottie.host/embed/cb938baf-01e7-4649-ac44-062630fb66cb/Z8DkbPVGaF.json" className="w-96 h-64"></iframe>
+                        <div className='cursor-default	mt-10 justify-content-center items-center text-center'>
+                          <h1 className="text-white text-2xl font-bold ">
                            {t('sayhello')} 
-                           </h1>
-                           <p className="text-white opacity-75  font-light mt-3">
+                          </h1>
+                          <p className="text-white opacity-75  font-light mt-3">
                            {t('textmsg')} 
                           </p>
-
                         </div>
                       </div>
+                      : 
+                      <div className="w-full h-full flex flex-col gap-2">
+                        {
+                          UserDataToShow.map((member) => {
+                              return (
+                                <Messages member={member} />
+                              );
+                          })
+                        }
+                      </div>
+                      }
+                    </div>
 
                  </TabPanel>
             </TabsBody>

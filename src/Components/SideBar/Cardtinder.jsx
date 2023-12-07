@@ -83,8 +83,7 @@ function Cardtinder() {
     return (
         <div>
   
-
-        <div className='self-center shadow-md mr-96 shadow-pink-500/50 card-container'>
+        <div className='self-center shadow-md  shadow-pink-500/50 card-container'>
             {
                 db.map((profile, index) =>(
 
@@ -106,7 +105,7 @@ function Cardtinder() {
                           ) })}
                           </div>
                           
-                            <div className='text-white active '>
+                            <div className='text-white active1 '>
                                 <FaCircle color='green' />
                                 <h3>Recently Active</h3>
                             </div> 
@@ -163,7 +162,8 @@ function Cardtinder() {
            </IconButton>
           
        </div>
-        </div>
+      </div>
+        
         </div>
     );
 }

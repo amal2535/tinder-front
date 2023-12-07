@@ -5,8 +5,8 @@ import { About,Contact, Faq, Policy, Security  } from "./Components/Pages";
 import MainTinder from "./Components/Pages/Main/Main"
 import Profile from "./Components/Pages/Profile";
 import { CookieProvider } from "./Context/CookieContext";
-import Sidebar from "./Components/SideBar/SideBar";
-import Cardtinder from "./Components/SideBar/Cardtinder";
+import { ConversationProvider } from "./Context/ConversationContext"
+import Loader from "./Components/ui/Loading";
 
 const router = createBrowserRouter([
   {
@@ -69,17 +69,12 @@ function App() {
   }
 
   return (
-    <div id="app"  className="fixed flex h-screen ">
-
-        <CookieProvider>
-          <Sidebar/>
-          <main className="flex items-center justify-center w-screen h-screen overflow-x-hidden bg-black ">
-            <Cardtinder/>
-            
-          </main>
-
-        </CookieProvider>
-     
+    <div className="">
+      <CookieProvider>
+        <ConversationProvider>
+          <RouterProvider router={router} />
+        </ConversationProvider>
+      </CookieProvider>
     </div>
   )
 }

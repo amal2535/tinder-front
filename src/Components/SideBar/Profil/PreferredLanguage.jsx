@@ -1,11 +1,19 @@
-import React,{useState} from 'react';
+import React,{useState, useContext} from 'react';
 import { List, ListItem ,Checkbox,ListItemSuffix} from "@material-tailwind/react";
 import { Divider } from '@mui/material';
-
+import { SidebarContext } from '../../../Context/SideBarContext';
 
 export default function PreferredLanguage() {
+  const { setTinderComponentOpen, setProfileComponentOpen, setPreferredLanguageOpen, setTinderOpen, setUserOpen } = useContext(SidebarContext)
+  const handleClick = () => {
+    setPreferredLanguageOpen(false)
+    setProfileComponentOpen(false)
+    setTinderComponentOpen(true)
+    setTinderOpen(false)
+    setUserOpen(true)
+  }
        
-    const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedItems, setSelectedItems] = useState([]);
 
   const handleCheckboxChange = (language) => {
     if (selectedItems.includes(language)) {
@@ -17,7 +25,7 @@ export default function PreferredLanguage() {
     }
   };
     return (
-        <div>
+        <div className="w-[27rem] h-[110vh] bg-black">
     <div className='ml-4 font-bold text-white opacity-50 cursor-default ' style={{ transform: "translateY(30px)" }}>Sélectionner une langue</div>
     <div className=" mx-1 w-96 bg-[rgb(20,20,28)] " style={{ transform: "translateY(30px)" }}>
     <List className='text-white mt-9 '>
@@ -128,6 +136,7 @@ export default function PreferredLanguage() {
       </a>
       </List>
       </div>
+      <button className="mt-12 mb-5 bg-blue-gray-700 rounded-2xl py-2 border mx-2 px-32 ml-10 border-white text-white hover:bg-blue-gray-700/80 transition ease-in-out delay-150 active:scale-90" onClick={handleClick} > Confirm </button>
 </div>
 );
 }

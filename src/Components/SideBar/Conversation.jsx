@@ -52,7 +52,7 @@ export default function Conversation ({ setOpen, setSendMessage, receiveMessage,
         scroll.current?.scrollIntoView({behaviour: "smooth"})
     }, [messages])
     return (
-        <div className="flex flex-col bg-zinc-900 w-full h-screen ">
+        <div className="flex flex-col bg-black w-full h-screen ">
             <div className="flex justify-between items-center border-b-2 border-gray-700 shadow-slate-900 shadow-md h-20 px-8">
                 <div className="flex gap-5 items-center">
                     <img src={`${ChatMember.images[0]}`} alt="" width={60} height={60} className="rounded-full w-14 h-14" />
@@ -104,7 +104,7 @@ export default function Conversation ({ setOpen, setSendMessage, receiveMessage,
                         value={text}
                         onChange={setText}
                         cleanOnEnter
-                        keepOpened
+                        keepOpened={true}
                         onEnter={handleSend}
                         placeholder="Type a message"
                     />

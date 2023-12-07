@@ -12,3 +12,23 @@ export const CheckProfile = async ({email}) => {
         console.log(err)
     }
 }
+
+export const CreateProfile = async({ firstname, lastname, birthday, gender, showme, aboutme, images, email, Location }) => {
+    let result 
+    try{
+        result = await axios.post(`${BASE_URL}/api/profile`, { firstname, lastname, birthday, gender, showme, aboutme, images, email, Location})
+       return result
+    }catch(err){
+        return err.response
+    }
+}
+
+export const DeleteUser = async ({email}) => {
+    let result
+    try{
+        result  = await axios.delete(`${BASE_URL}/api/user?email=${email}`)
+        console.log(result)
+    }catch(err){
+        console.log(err)
+    }
+}

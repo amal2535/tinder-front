@@ -1,15 +1,24 @@
-import React  from 'react'
+import React, {useContext}  from 'react'
 import { List, ListItem } from "@material-tailwind/react";
-
+import { SidebarContext } from '../../../Context/SideBarContext';
 import { Divider } from '@mui/material';
+
 export default function Preference() {
+  const { setTinderComponentOpen, setProfileComponentOpen, setPreferredLanguageOpen, setTinderOpen, setUserOpen } = useContext(SidebarContext)
+  const handleClick = () => {
+    setPreferredLanguageOpen(true)
+    setProfileComponentOpen(false)
+    setTinderComponentOpen(false)
+    setTinderOpen(false)
+    setUserOpen(true)
+  }
   return (
     <div>
           <div className='ml-4 font-bold text-white opacity-50 cursor-default ' style={{ transform: "translateY(360px)" }}>Display Preference</div>
             <div className="mx-2 w-96 bg-[rgb(20,20,28)] " style={{ transform: "translateY(350px)" }}>
             <List className='text-white mt-9 '>
               <a href="#" className="flex text-initial ">
-                <ListItem className=' hover:bg-inherit active:bg-inherit focus:bg-inherit hover:text-white focus:text-white active:text-white'>
+                <ListItem className=' hover:bg-inherit active:bg-inherit focus:bg-inherit hover:text-white focus:text-white active:text-white' onClick={handleClick}>
                     <span  style={{ whiteSpace: 'nowrap' }} >Language</span>
                     <p style={{ marginLeft: 'auto' }} className='text-sm text-white opacity-50 opacity-100 hover:text-red-400'>English</p>
 
