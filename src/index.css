@@ -190,15 +190,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background-position: center;
   box-shadow: 0px 20px 60px 0px rgba(0, 0, 0, 0.3);
 }
-.active{
-  position: absolute;
-  display: flex;
-  gap: 5px;
-  font-size: 1rem;
-  bottom: 250px;
-  font-weight: bold;
-  margin-left: 20px;
-}
+
 .info{
   position: absolute;
   display: flex;
@@ -284,3 +276,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 }
 
+.active1{
+  position: absolute;
+  display: flex;
+  gap: 5px;
+  font-size: 1rem;
+  bottom: 250px;
+  font-weight: bold;
+  margin-left: 20px;
+}

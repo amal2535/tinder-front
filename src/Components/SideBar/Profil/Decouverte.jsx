@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { List, ListItem } from "@material-tailwind/react";
 import { Divider } from '@mui/material';
 import DistanceMax from './DistanceMax';
@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { TiTick } from "react-icons/ti";
 import { FaLocationDot } from "react-icons/fa6";
-
+import { useState } from 'react';
 const style = {
   position: 'absolute',
   top: '50%',
@@ -24,12 +24,22 @@ const style = {
   p: 4,
 };
 
-export default function Decouverte() {
+export default function Decouverte({ location, LookingFor }) {
 
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [locationString, setLocationString] = useState()
+
+useEffect(()=>{
+  if (location?.status === 200) {
+    setLocationString(`${location.data.results[0].components.state}, ${location.data.results[0].components.country}`);
+  }
+  console.log(locationString)
+  
+})
+console.log(locationString)
   return (
     <div>
         <div className='ml-4 font-bold text-white transform translate-y-40 opacity-50 cursor-default'>Discovery Settings</div>
@@ -38,7 +48,7 @@ export default function Decouverte() {
               <a href="#" className="flex text-initial ">
                 <ListItem className=' hover:bg-inherit active:bg-inherit focus:bg-inherit hover:text-white focus:text-white active:text-white' onClick={handleOpen}>
                     <span  style={{ whiteSpace: 'nowrap' }} >Location</span>
-                    <p style={{ marginLeft: 'auto' }} className='text-sm text-white opacity-50 opacity-100 paragrapheLimite hover:text-red-400'>Sousse,Tunisie</p>
+                    <p style={{ marginLeft: 'auto' }} className='text-sm text-white  opacity-100 paragrapheLimite hover:text-red-400'>{locationString}</p>
                     <svg style={{ marginLeft: 'auto' }}  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right hover:stroke-[#f87171] active:stroke-[#f87171]"><path d="m9 18 6-6-6-6"/></svg>
                 </ListItem>
               </a>
@@ -51,7 +61,7 @@ export default function Decouverte() {
               <a href="#" className="flex text-initial">
                 <ListItem  className='hover:bg-inherit active:bg-inherit focus:bg-inherit hover:text-white focus:text-white active:text-white '>
                     <span  style={{ whiteSpace: 'nowrap' }}>Looking for</span>
-                    <p style={{ marginLeft: 'auto' }} className='text-sm text-white opacity-50 opacity-100 paragrapheLimite hover:text-red-400'>Women</p>
+                    <p style={{ marginLeft: 'auto' }} className='text-sm text-white  opacity-100 paragrapheLimite hover:text-red-400'>{LookingFor}s</p>
                     <svg style={{ marginLeft: 'auto' }} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right hover:stroke-[#f87171] active:stroke-[#f87171] "><path d="m9 18 6-6-6-6"/></svg>
                 </ListItem>
               </a>
@@ -99,7 +109,7 @@ export default function Decouverte() {
                       <TiTick style={{ marginLeft: 'auto' }} color='#660099' size={"24px"}/>
                        
                     </ListItem>
-                    <p className='ml-20 text-sm text-white opacity-50 hover:text-red-400'>Sousse, Tunisie</p>
+                    <p className='ml-20 text-sm text-white opacity-50 hover:text-red-400'>{locationString}</p>
 
 
       
