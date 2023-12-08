@@ -11,7 +11,9 @@ export const SidebarProvider = ({ children }) => {
     const [Long, setLong] = useState()
     const [Lat, setLat] = useState()
     const [LocationData, setLocationData] = useState()
-    
+    const [LikesTabOpen, setLikesTabOpen] = useState(false)
+    const [DistancePreference, setDistancePreference] = useState(80)
+    const [ageRange, setAgeRange] = useState([18,32]);
     useEffect(() => {
       const CheckingProfile = async () => {
         try {
@@ -58,7 +60,8 @@ export const SidebarProvider = ({ children }) => {
              tinderOpen, setTinderOpen, tinderComponentOpen, 
              setTinderComponentOpen, profileComponentOpen, setProfileComponentOpen, 
              userOpen, setUserOpen, preferredLanguageOpen, setPreferredLanguageOpen, 
-             profile, LocationData
+             profile, LocationData, LikesTabOpen, setLikesTabOpen, DistancePreference, 
+             setDistancePreference, ageRange, setAgeRange
               }} >
             {children}
         </SidebarContext.Provider>

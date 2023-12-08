@@ -5,10 +5,11 @@ import Profil from "./Profil/Profil";
 import TinderIcon from "./TinderIcon"
 import PreferredLanguage from "./Profil/PreferredLanguage";
 import { SidebarContext } from "../../Context/SideBarContext";
+import LikesTab from "./LikesTab"
 
 export default  function Sidebar() {
     
-  const { tinderOpen, tinderComponentOpen, profileComponentOpen, userOpen, preferredLanguageOpen } = useContext(SidebarContext)
+  const { tinderOpen, tinderComponentOpen, profileComponentOpen, userOpen, preferredLanguageOpen, LikesTabOpen, setLikesTabOpen } = useContext(SidebarContext)
     return (
       <div className=" w-[33.5rem] min-h-screen overflow-x-hidden overflow-y-scroll ">
         <div className="h-20 p-4 violet-sidebar "> 
@@ -38,6 +39,10 @@ export default  function Sidebar() {
             {
               profileComponentOpen &&
                 <Tabs/> 
+            }
+            {
+              LikesTabOpen &&
+                <LikesTab/> 
             }
           </div>
       </div>

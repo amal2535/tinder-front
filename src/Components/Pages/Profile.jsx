@@ -6,7 +6,6 @@ import { CreateProfile } from "../API/ProfileAPI";
 import { CookieContext } from "../../Context/CookieContext";
 import { useNavigate } from "react-router-dom";
 import { CheckProfile } from "../API/ProfileAPI";
-import { GetCurrentLocation } from "../API/LocationAPI"
 
 export default function Profile(){
     const { cookies } = useContext(CookieContext)

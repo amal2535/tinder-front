@@ -10,13 +10,23 @@ import {
   } from "@material-tailwind/react";
   
 const User = () => {
-  const { setTinderComponentOpen, setProfileComponentOpen, setPreferredLanguageOpen, setTinderOpen, setUserOpen, profile } = useContext(SidebarContext)
+  const { setTinderComponentOpen, setProfileComponentOpen, setPreferredLanguageOpen, setTinderOpen, setUserOpen, profile, setLikesTabOpen } = useContext(SidebarContext)
   const handleClick = () => {
     setPreferredLanguageOpen(false)
     setProfileComponentOpen(true)
     setTinderComponentOpen(false)
     setTinderOpen(true)
     setUserOpen(false)
+    setLikesTabOpen(false)
+  }
+
+  const handleLikesClick = () => {
+    setPreferredLanguageOpen(false)
+    setProfileComponentOpen(false)
+    setTinderComponentOpen(false)
+    setTinderOpen(true)
+    setUserOpen(false)
+    setLikesTabOpen(true)
   }
   const name = profile.firstname
   const image = profile.images[0]
@@ -34,7 +44,7 @@ const User = () => {
     </div>
 
     <div className="flex gap-5 mt-3 -translate-y-1 -translate-x-4 items-center" style={{ marginLeft: 'auto' }}>
-        <BsPersonHearts color="#660099" size={"60"} className='cursor-pointer transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110  duration-300 '/>
+        <BsPersonHearts color="#660099" size={"60"} className='cursor-pointer transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110  duration-300 ' onClick={handleLikesClick}/>
         <MdOutlineSecurity color="#660099" size={"60px"} className='cursor-pointer transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110  duration-300' />
         <Language /> 
       </div>
