@@ -55,14 +55,16 @@ export default function MainTinder(){
     
     
     return(
+        <SidebarProvider>
         <div className="flex w-screen fixed flex-row overflow-y-hidden">
-            <SidebarProvider>
+            
                 <Sidebar/>
-            </SidebarProvider>
+            
             {!open && <main className="flex items-center justify-center w-full h-screen overflow-x-hidden bg-black ">
                 <Cardtinder/>
             </main>}
             { open && <Conversation setOpen={setOpen} setSendMessage={setSendMessage} receiveMessage={receiveMessage} sendMessage={sendMessage} setReceiveMessage={setReceiverMessage} /> }
         </div>
+        </SidebarProvider>
     )
 }

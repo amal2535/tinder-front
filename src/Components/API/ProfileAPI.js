@@ -32,3 +32,15 @@ export const DeleteUser = async ({email}) => {
         console.log(err)
     }
 }
+
+export const GetUserByGender = async ({ gender, likedUsers, superLikedUsers }) => {
+    console.log("super : ",superLikedUsers)
+    console.log("liked", likedUsers)
+    let result 
+    try{
+        result = await axios.post(`${BASE_URL}/api/profile/gender?gender=${gender}`, {likedUsers, superLikedUsers})
+        return result
+    }catch(err){
+        console.log(err)
+    }
+}

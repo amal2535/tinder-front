@@ -36,10 +36,8 @@ useEffect(()=>{
   if (location?.status === 200) {
     setLocationString(`${location.data.results[0].components.state}, ${location.data.results[0].components.country}`);
   }
-  console.log(locationString)
   
 })
-console.log(locationString)
   return (
     <div>
         <div className='ml-4 font-bold text-white transform translate-y-40 opacity-50 cursor-default'>Discovery Settings</div>

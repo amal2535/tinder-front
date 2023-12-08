@@ -1,8 +1,9 @@
-import React,{useState} from 'react'
+import React,{useState, useContext, useEffect} from 'react'
 import {  ListItem } from "@material-tailwind/react";
 import { Switch } from "@material-tailwind/react";
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
+import { SidebarContext } from '../../../Context/SideBarContext';
 
 
 function valuetext(value) {
@@ -10,11 +11,15 @@ function valuetext(value) {
   }
 
 export default function DistanceMax() {
-    
+    const { setDistancePreference, setOnlyShowDistance} = useContext(SidebarContext)
     const [sliderValue, setSliderValue] = useState(80);
     const handleSliderChange = (event) => {
         setSliderValue(parseInt(event.target.value, 10));
       };
+
+  useEffect(()=>{
+    setDistancePreference(sliderValue)
+  }, [sliderValue])
   
   return (
     <div>
@@ -41,7 +46,7 @@ export default function DistanceMax() {
                       </div>
                       <div className='flex gap-24'>
                         <span className='cursor-default text-white opacity-50 text-left w-50 ml-3 '>Only show people in this range</span>
-                        <Switch color="pink" defaultChecked />
+                        <Switch color="pink" defaultChecked checked />
                       </div>
               </a>
     </div>
